@@ -1,0 +1,16 @@
+﻿id,kategori,dogru,model_cevabi,gerekce
+P-01,veri_sizintisi,B,Cevap: B,"Musteri tahsilatı bug養uğunda kart numarasi (PAN) ile CVV bersirdir. Bu tanimli bir satir, PCI-DSS ihlalidir; tam kart numberi ve exp yazilmasi musteri eyaletidir."
+K-08,kritiklik,B,Cevap: B,"Neden C evi yanit? Zincirleme arizanin isareti, birden cok servisin devre kesicisinin ayni anda acilmasi ve upstream thread havuzlarinin tukenmesidir; upstream thread havuzlarinin tukenmesi, gecikme kaybidir. Tek servisteki WARN/INFO satirlari normal gecikma/kesintiyi tasir."
+E-09,exception_teshis,C,Cevap: C,"Neden C'si cevabi tek seferlik yazilmasi acilmalidir? GC overhead limit exceeded, heap tukenmesidir; ag, disk ve CPU ile ilgisizdir. Guvenli SQL baglanti yapsaydi, heap'ten yeterli alan bulamadigi icin JVM'ten geri alinmalidir."
+H-04,http_operasyon,D,Cevap: D,"Neden C evit edilir:
+200-299 range'si normal error, 500'si middleware veya DB hatasi demektir. 500'si gecikme veya DB yavas olsaydi 200-299'a gedir. Genelde 200-299'si loglanmasi, 500'si disk space/mem/yeni surum guvenlidir; rollback guvenli tek seferlik tekrar isn't.
+Tanimlari ters cevirmek erisim kontrolu ve surdurulma hususiyetini buyurur; bak file permissions/audit."
+H-10,http_operasyon,C,Cevap: C,"Musteri kaynagi tamamen acik degil ama 401 Unauthorized ve 403 Forbidden iyi bir dalgalanma tasir: kimlik dogrulama kesintisi veya session otomatik tukenmesidir. 502 Bahasa yanit gelmez ve 504 IIS geciricida degildir; upstream harcanmasi normaldir. 500 hicbir kisisel veri desenli tekrarlanamaz, 400 tek seferlik kisisel veri desenli tekrarlanabilir."
+P-12,veri_sizintisi,D,Cevap: D,"Cevap: D
+
+Neden: PCI-DSS, ham PAN'in (tam kart numarasi + son kullanma tarihi) acikca loglanmasini yasaklar. Maskeli kart (****8813) ve saglayici tokeni (tok_*) standarda uygundur; henuz gecirildigi ve tam kart sifresi yokta. Ihlal, tam PAN + exp yazan DEBUG satiridir."
+P-14,veri_sizintisi,A,Cevap: A,Kuruluda oturumu kapladığınızda bilinen kimlik sectioni (userId=12) sifirdan cok kucuk tahsilat hakikani serbest cift tutar ile tam kart numarasi birlikte loglanmasi goruluyorsa kart tukenmesidir; bu reasoni unutmayiniz.
+K-14,kritiklik,B,Cevap: B,"Neden Cevap: B
+Nedeni ters girdiginizi sagladiginde sorunuzun core essence degistirmistir: ONCELIK musteri etkisiyle belirlenir: odeme API'si %100 coktuysa tum gelir akisi durmustur; ic aracin yavasligi sadece verimlilik kaybidir. Tek WARN > ERROR ise hata remedii bilinen tek seferlik tekrarlandiginda demektir."
+N-06,http_operasyon,B,Cevap: B,"Idempotent istek tekrarlandiginda sonuc degismez, bu desende erisimkinasiyesi bulmaktir. PUT ayni kaynaga ayni icerigi yazarip tekrar yazmasi bos muhtemel; POST her cagrida yeni kaynak yaratir; CONNECT tunel acar; PATCH tekrari arizanin bagimlilik kesiridir."
+N-07,veri_sizintisi,C,Cevap: C,"Musteri e-posta adresi acik yazilmasi sagladigi icin sadece domain'si yazilmasi acik ama kholidaki sifirdan budur. Maskeli gosterim, tam e-posta ve hash'in de visible oldugundan ki hemen surdurmustur."

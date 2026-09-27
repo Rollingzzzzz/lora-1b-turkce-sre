@@ -1,0 +1,14 @@
+# Sanal ortam ve modeller (GB'larca yer kaplar, yeniden üretilebilir)
+.venv/
+hf_cache/
+__pycache__/
+*.pyc
+
+# Sürüm arşivi: yalnızca final adaptör (lora_adapter/) depoda.
+# Ara sürümler train_rationale*.jsonl + improvements.md ile birebir yeniden üretilebilir.
+lora_adapter_v1_ezber/
+lora_adapter_v3_aug/
+lora_adapter_v4_rationale/
+lora_adapter_v5b/
+lora_adapter_v6_e10/
+lora_adapter_v6_e10_bak/
